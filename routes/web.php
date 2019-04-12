@@ -11,18 +11,13 @@
 |
 */
 
-$router->get('/test', function () use ($router) {
-    return "hello";
+$router->get('/', function () use ($router) {
+    return "Welcome to API Digital ID";
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('authors',  ['uses' => 'AuthorController@showAllAuthors']);
+    $router->post('did', ['uses' => 'DigitalIdController@postData']);
 
-    $router->get('authors/{id}', ['uses' => 'AuthorController@showOneAuthor']);
-
-    $router->post('authors', ['uses' => 'AuthorController@create']);
-
-    $router->delete('authors/{id}', ['uses' => 'AuthorController@delete']);
-
-    $router->put('authors/{id}', ['uses' => 'AuthorController@update']);
+    $router->get('did/{id}', ['uses' => 'DigitalIdController@showDid']);
+    $router->get('did', ['uses' => 'DigitalIdController@root']);
 });
